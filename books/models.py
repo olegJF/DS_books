@@ -6,7 +6,7 @@ class Book(models.Model):
     authors_info = models.TextField(verbose_name='Информация об авторах')
     isbn = models.CharField(max_length=20, unique=True,
                                         verbose_name='ISBN книги')
-    price = models.DecimalField(blank=True, max_digits=10, decimal_places=2, 
+    price = models.DecimalField(max_digits=10, decimal_places=2, 
                                                     verbose_name='Цена книги')
                                                     
     class Meta:
@@ -15,7 +15,7 @@ class Book(models.Model):
         ordering = ['book_title']
         
     def __str__(self):
-        return self.name
+        return self.book_title
         
         
     
