@@ -7,7 +7,7 @@
     <h2 class='text-center'><span>Книги</span></h2>
    
    <div class="row">
-        <div class="col-md-7 mx-auto">
+        <div class="col-md-11 mx-auto">
 			<table class="table table-striped">
 				<thead>
                     <tr>
@@ -26,7 +26,9 @@
 						<td>{{ object.isbn }}</td>
 						<td>{{ object.price }}</td>
 						<td>
-							
+							<a href="{%url 'books:update' pk=object.pk %}">
+								<button type="button" class='btn btn-success btn-sm' >
+									Редактировать</button></a>
 						</td>
 						
 					</tr>
@@ -47,8 +49,6 @@
 
 	{% endblock %}
 	
-	<!-- <a href="{%url 'books:update' pk=object.pk %}">
-								<button type="button" class='btn btn-success btn-sm' >
-									Редактировать</button></a> -->
+	
 									
 	

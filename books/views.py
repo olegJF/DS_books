@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from .models import Book
 from .forms import BookForm
 
@@ -18,3 +18,11 @@ class BookCreate(SuccessMessageMixin, CreateView):
     template_name = 'books/create.html'
     success_url = reverse_lazy('books:home')
     success_message = "Книга была успешно создан!"
+    
+
+class BookUpdate(SuccessMessageMixin, UpdateView):
+    model = Book
+    form_class = BookForm
+    template_name = 'books/create.html'
+    success_url = reverse_lazy('books:home')
+    success_message = "Редактирование прошло успешно!"
