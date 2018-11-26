@@ -8,6 +8,7 @@ class Book(models.Model):
                                         verbose_name='ISBN книги')
     price = models.DecimalField(max_digits=10, decimal_places=2, 
                                                     verbose_name='Цена книги')
+    publish_date = models.DateTimeField(verbose_name='Дата публикации')
                                                     
     class Meta:
         verbose_name = 'Книга'
