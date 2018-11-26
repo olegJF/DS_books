@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Книги {% endblock %}
+
+{% block content %}
+<div  class="container">
+    <h2 class='text-center'><span>Книги</span></h2>
+   
+   <div class="row">
+        <div class="col-md-7 mx-auto">
+			<table class="table table-striped">
+				<thead>
+                    <tr>
+                        <th scope="col">Название книги</th>
+                        <th scope="col">Информация об авторах</th>
+                        <th scope="col">ISBN</th>
+                        <th scope="col">Цена</th>
+                        <th scope="col">&nbsp;</th>
+                    </tr>
+                </thead>
+				<tbody>
+				{% for object in objects_list %}
+					<tr>
+						<td>{{ object.book_title }}</td>
+						<td>{{ object.authors_info }}</td>
+						<td>{{ object.isbn }}</td>
+						<td>{{ object.price }}</td>
+						<td>
+							
+						</td>
+						
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+    </div>
+	
+	<div class="row">
+        <div class="col">
+		
+		</div>
+    </div>
+
+</div>
+
+	{% endblock %}
+	
+	<!-- <a href="{%url 'books:update' pk=object.pk %}">
+								<button type="button" class='btn btn-success btn-sm' >
+									Редактировать</button></a> -->
+									
+	<!-- <a href="{%url 'books:add' %}">
+			<button type="button" class='btn btn-info ' >Создать </button></a> -->
