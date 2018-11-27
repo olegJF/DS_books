@@ -17,7 +17,8 @@
                         <th scope="col">Информация об авторах</th>
                         <th scope="col">ISBN</th>
                         <th scope="col">Цена</th>
-                        <th scope="col">Дата публикации</th>
+                        <th scope="col">Дата публикации <a href="{%url 'books:home' %}?sort=desc">-</a>/
+							<a href="{%url 'books:home' %}?sort=asc">+</a></th>
 						<th scope="col">&nbsp;</th>
                     </tr>
                 </thead>

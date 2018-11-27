@@ -6,7 +6,11 @@ from .models import Book
 from .forms import BookForm
 
 def home(request):
-    qs = Book.objects.all()
+    sort = request.GET.get('sort', 'desc')
+    if sort == 'desc':
+        qs = Book.objects.sort()
+    else:
+        qs = Book.objects.sort('asc')
     context = {}
     context['objects_list'] = qs
     return render(request, 'books/home.html', context)

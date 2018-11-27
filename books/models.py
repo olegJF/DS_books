@@ -1,6 +1,22 @@
 from django.db import models
 from django.utils import timezone
 
+class BookQuerySet(models.query.QuerySet):
+    
+    def sort(self, how_to='desc'):
+        if how_to == 'desc':
+            return self.order_by('publish_date')
+        else:
+            return self.order_by('-publish_date')
+        
+        
+class BookManager(models.Manager):
+    
+    def get_queryset(self):
+        return BookQuerySet(self.model, using=self._db)
+
+    def sort(self, how_to='desc'):
+        return self.get_queryset().sort(how_to)
 
 class Book(models.Model):
     book_title = models.CharField(max_length=255, verbose_name='Название книги')
@@ -11,7 +27,7 @@ class Book(models.Model):
                                                     verbose_name='Цена книги')
     publish_date = models.DateField(default=timezone.now, 
                                                 verbose_name='Дата публикации')                                                
-
+    objects = BookManager()
                                                     
     class Meta:
         verbose_name = 'Книга'
