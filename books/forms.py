@@ -14,7 +14,10 @@ class BookForm(forms.ModelForm):
                                attrs={"class": 'form-control'}))
     price = forms.DecimalField(label='Цена', required=True,
                                      widget=forms.NumberInput(
-                                         attrs={"class": 'form-control'}))    
+                                         attrs={"class": 'form-control'}))
+    publish_date = forms.CharField(label='Дата публикации',
+                           widget=forms.TextInput(
+                               attrs={"class": 'form-control datetimepicker3'}))                                         
     class Meta(object):
         model = Book
-        fields = ('book_title', 'authors_info', 'isbn', 'price')
+        fields = ('book_title', 'authors_info', 'isbn', 'price', 'publish_date')

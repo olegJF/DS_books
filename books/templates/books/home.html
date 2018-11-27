@@ -15,7 +15,8 @@
                         <th scope="col">Информация об авторах</th>
                         <th scope="col">ISBN</th>
                         <th scope="col">Цена</th>
-                        <th scope="col">&nbsp;</th>
+                        <th scope="col">Дата публикации</th>
+						<th scope="col">&nbsp;</th>
                     </tr>
                 </thead>
 				<tbody>
@@ -25,6 +26,7 @@
 						<td>{{ object.authors_info }}</td>
 						<td>{{ object.isbn }}</td>
 						<td>{{ object.price }}</td>
+						<td>{{ object.publish_date| date:"d/m/Y" }}</td>
 						<td>
 							<a href="{%url 'books:update' pk=object.pk %}">
 								<button type="button" class='btn btn-success btn-sm' >
