@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class Book(models.Model):
@@ -8,7 +9,9 @@ class Book(models.Model):
                                         verbose_name='ISBN книги')
     price = models.DecimalField(max_digits=10, decimal_places=2, 
                                                     verbose_name='Цена книги')
-    publish_date = models.DateTimeField(verbose_name='Дата публикации')
+    publish_date = models.DateField(default=timezone.now, 
+                                                verbose_name='Дата публикации')                                                
+
                                                     
     class Meta:
         verbose_name = 'Книга'
