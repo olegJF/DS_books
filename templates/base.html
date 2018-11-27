@@ -76,8 +76,16 @@
 	 <div  class="container my-5">
 	{% block content  %} {% endblock %}
     </div>
-	<!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<footer class="footer fixed-bottom my-3 text-center">
+      <div class="container">
+		{% now "Y" as current_year %}
+		{%if current_year == '2018'%}
+			<span class="text-muted">Copyright {{ current_year }}</span>
+		{% else %}
+			<span class="text-muted">Copyright '2018' - {{ current_year }}</span>
+		{% endif %}
+      </div>
+    </footer>
     
   </body>
 </html>
