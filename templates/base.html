@@ -1,5 +1,6 @@
 {% url 'books:home' as home_url %}
 {% url 'books:create' as create_url %}
+{% url 'http_head:home' as req_url %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -25,7 +26,7 @@
 		  </button>
 
 		  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-			<ul class="navbar-nav mr-auto">
+			<ul class="navbar-nav ml-auto">
 			  
 			  <li class="nav-item {% if request.path == home_url %}active{% endif %}">
 				<a class="nav-link" href="{% url 'books:home' %}">Книги</a>
@@ -33,15 +34,9 @@
 			   <li class="nav-item {% if request.path == create_url %}active{% endif %}">
 				<a class="nav-link " href="{%url 'books:create' %}">Создать</a>
 			  </li>
-			  <!--
-			  <li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-				<div class="dropdown-menu" aria-labelledby="dropdown01">
-				  <a class="dropdown-item" href="#">Action</a>
-				  <a class="dropdown-item" href="#">Another action</a>
-				  <a class="dropdown-item" href="#">Something else here</a>
-				</div>
-			  </li> -->
+			  <li class="nav-item {% if request.path == req_url %}active{% endif %}">
+				<a class="nav-link " href="{%url 'http_head:home' %}">Запросы к сайту</a>
+			  </li>
 			</ul>
 			<!-- <form class="form-inline my-2 my-lg-0">
 			  <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
