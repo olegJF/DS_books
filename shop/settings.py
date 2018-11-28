@@ -10,6 +10,59 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 import os
+import logging.config
+from django.utils.log import DEFAULT_LOGGING
+LOGGING_CONFIG = None
+
+logging.config.dictConfig({
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'default': {
+                    'format': '[%(server_time)s] %(message)s',
+        },
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'django.server': DEFAULT_LOGGING['formatters']['django.server'],
+    },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'filters': ['require_debug_true']
+        },
+        'django.server': DEFAULT_LOGGING['handlers']['django.server'],
+    },
+    'loggers': {
+        '': {
+            'level': 'INFO',
+            'handlers': ['console']
+        },
+        'django': {
+            'handlers': ['console', 'mail_admins'],
+            'level': 'INFO',
+            
+        },
+        
+        'django.server': DEFAULT_LOGGING['loggers']['django.server'],
+    }
+})
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -57,7 +110,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'shop.middleware.SaveHTTPRequestMiddleware', 
+    # 'shop.middleware.SaveHTTPRequestMiddleware', 
 ]
 
 ROOT_URLCONF = 'shop.urls'

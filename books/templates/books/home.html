@@ -7,18 +7,26 @@
     <h2 class='text-center'><span>Книги</span></h2>
    
    <div class="row">
+		<div class="col text-right">
+		<a href="{%url 'admin:app_list' 'books' %}" >
+				<button type="button" class='btn btn-info btn-sm' >
+					Административная часть
+				</button></a>
+		</div>
         <div class="col-md-11 mx-auto">
-			<h4><a href="{%url 'admin:app_list' 'books' %}">Административная часть</a></h4>
+			
 			<hr>
 			<table class="table table-striped">
 				<thead>
-                    <tr>
-                        <th scope="col">Название книги</th>
-                        <th scope="col">Информация об авторах</th>
-                        <th scope="col">ISBN</th>
-                        <th scope="col">Цена</th>
-                        <th scope="col">Дата публикации <a href="{%url 'books:home' %}?sort=desc">-</a>/
+                    <tr >
+                        <th class="align-top" scope="col">Название книги</th>
+                        <th class="align-top" scope="col">Информация об авторах</th>
+                        <th class="align-top" scope="col">ISBN</th>
+                        <th class="align-top" scope="col">Цена</th>
+                        <th class="align-top" scope="col">Дата<br/> публикации <br/>
+							<a href="{%url 'books:home' %}?sort=desc">-</a>/
 							<a href="{%url 'books:home' %}?sort=asc">+</a></th>
+						<th scope="col">&nbsp;</th>
 						<th scope="col">&nbsp;</th>
                     </tr>
                 </thead>
@@ -35,7 +43,11 @@
 								<button type="button" class='btn btn-success btn-sm' >
 									Редактировать</button></a>
 						</td>
-						
+						<td>
+							<a href="{%url 'books:delete' pk=object.pk %}">
+								<button type="button" class='btn btn-danger btn-sm' >
+									Удалить</button></a>
+						</td>
 					</tr>
 				{% endfor %}
 				</tbody>
