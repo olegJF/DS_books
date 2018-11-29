@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
+
 class BookQuerySet(models.query.QuerySet):
     
     def sort(self, how_to='desc'):
@@ -18,15 +19,16 @@ class BookManager(models.Manager):
     def sort(self, how_to='desc'):
         return self.get_queryset().sort(how_to)
 
+
 class Book(models.Model):
     book_title = models.CharField(max_length=255, verbose_name='Название книги')
     authors_info = models.TextField(verbose_name='Информация об авторах')
     isbn = models.CharField(max_length=20, unique=True,
-                                        verbose_name='ISBN книги')
+                            verbose_name='ISBN книги')
     price = models.DecimalField(max_digits=10, decimal_places=2, 
-                                                    verbose_name='Цена книги')
+                                verbose_name='Цена книги')
     publish_date = models.DateField(default=timezone.now, 
-                                                verbose_name='Дата публикации')                                                
+                                    verbose_name='Дата публикации')
     objects = BookManager()
                                                     
     class Meta:
@@ -36,6 +38,4 @@ class Book(models.Model):
         
     def __str__(self):
         return self.book_title
-        
-        
-    
+

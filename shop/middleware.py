@@ -1,6 +1,7 @@
 import json
 from django.utils.deprecation import MiddlewareMixin
 
+
 class SaveHTTPRequestMiddleware(MiddlewareMixin):
     """Сохраняет в БД данные из request.META """
     
@@ -20,7 +21,7 @@ class SaveHTTPRequestMiddleware(MiddlewareMixin):
             new.save()
             
         return None
-    
+
     def process_response(self, request, response):
         return response
     

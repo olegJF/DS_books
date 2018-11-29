@@ -4,11 +4,11 @@ from .models import Book
 
 class BookForm(forms.ModelForm):
     book_title = forms.CharField(label='Название', required=True,
-                           widget=forms.TextInput(
-                               attrs={"class": 'form-control'}))
+                                 widget=forms.TextInput(
+                                        attrs={"class": 'form-control'}))
     authors_info = forms.CharField(label='Информация об авторах',
-                           widget=forms.TextInput(
-                               attrs={"class": 'form-control'}))
+                                   widget=forms.TextInput(
+                                        attrs={"class": 'form-control'}))
     isbn = forms.CharField(label='ISBN',
                            widget=forms.TextInput(
                                attrs={"class": 'form-control'}))
@@ -16,8 +16,9 @@ class BookForm(forms.ModelForm):
                                      widget=forms.NumberInput(
                                          attrs={"class": 'form-control'}))
     publish_date = forms.CharField(label='Дата публикации',
-                           widget=forms.TextInput(
-                               attrs={"class": 'form-control datetimepicker3'}))                                         
+                                   widget=forms.TextInput(
+                                        attrs={"class": 'form-control datetimepicker3'}))
+
     class Meta(object):
         model = Book
         fields = ('book_title', 'authors_info', 'isbn', 'price', 'publish_date')

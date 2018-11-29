@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import HttpHead
 import json
 
+
 def home(request):
     qs = HttpHead.objects.all()
     if qs.count() > 10:

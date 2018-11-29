@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 import logging.config
 from django.utils.log import DEFAULT_LOGGING
+from dotenv import load_dotenv
+
 LOGGING_CONFIG = None
 
 logging.config.dictConfig({
@@ -64,7 +66,7 @@ logging.config.dictConfig({
     }
 })
 
-from dotenv import load_dotenv
+
 load_dotenv()
 
 DB_PASSWORD = os.environ.get('DB_PASSWORD')
