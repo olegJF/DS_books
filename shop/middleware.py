@@ -1,24 +1,18 @@
 import json
 from django.utils.deprecation import MiddlewareMixin
-
+from http_head.models import HttpHead
 
 class SaveHTTPRequestMiddleware(MiddlewareMixin):
     """Сохраняет в БД данные из request.META """
     
     def process_request(self, request):
-        try:
-            from http_head.models import HttpHead
-            
-        except Exception as e:
-            return None
-        else:
-            data = {}
-            for key, value in request.META.items():
-                key = key.replace('"', "'")
-                data[key] = str(value).replace('"', "'")
-            new = HttpHead()
-            new.data = json.dumps(data, ensure_ascii=False)
-            new.save()
+        data = {}
+        for key, value in request.META.items():
+            key = key.replace('"', "'")
+            data[key] = str(value).replace('"', "'")
+        new = HttpHead()
+        new.data = json.dumps(data, ensure_ascii=False)
+        new.save()
             
         return None
 
